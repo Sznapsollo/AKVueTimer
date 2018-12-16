@@ -1,0 +1,26 @@
+a {
+	cursor: pointer;
+}
+
+#counterBox {
+	width: 80%; margin: auto auto;
+}
+
+#counterBox .container {
+	text-align: center;
+	padding: 15px 5px 15px 5px;
+}
+
+#counterBox .container h1{
+	font-size: 20px; 
+    font-size: 10vmax  ;
+	padding: 20px;
+}
+
+.navbar-light .navbar-nav .active {
+	font-weight: 700;
+}
+#timeText {
+	-webkit-font-smoothing: antialiased;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
