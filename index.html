@@ -33,19 +33,20 @@
 <body>
 	<div id="app">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<router-link :to="{ name: 'timer' }" class="navbar-brand">AKVueTimer</router-link>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
+			<div class="collapse navbar-collapse justify-content-stretch" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-auto">
 					<li class="nav-item" v-bind:class="{ active: $route.name=='timer' }">
-						<router-link :to="{ name: 'timer' }" class="nav-link">Timer</router-link>
+						<router-link :to="{ name: 'timer' }" data-toggle="collapse" data-target="#navbarSupportedContent" class="nav-link">Timer</router-link>
 					</li>
 					<li class="nav-item" v-bind:class="{ active: $route.name=='countdown' }">
-						<router-link :to="{ name: 'countdown' }" class="nav-link">Count Down</router-link>
+						<router-link :to="{ name: 'countdown' }" data-toggle="collapse" data-target="#navbarSupportedContent" class="nav-link">Count Down</router-link>
 					</li>
 					<li class="nav-item" v-bind:class="{ active: $route.name=='about' }">
-						<router-link :to="{ name: 'about' }" class="nav-link">About</router-link>
+						<router-link :to="{ name: 'about' }" data-toggle="collapse" data-target="#navbarSupportedContent" class="nav-link">About</router-link>
 					</li>
 				</ul>
 			</div>

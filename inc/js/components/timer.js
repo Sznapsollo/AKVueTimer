@@ -7,9 +7,9 @@ const Timer = {
 					</div>
 				</div>
 				<div class="container">
-					<button type="button" class="btn btn-success btn-lg" v-if="!counting" v-on:click="startCount()">Start</button>
-					<button v-if="counting" type="button" class="btn btn-danger btn-lg" v-on:click="stopCount()">Stop</button>
-					<button v-if="secondsValue>0" type="button" class="btn btn-default btn-lg" v-on:click="resetCount()">Reset</button>
+					<button type="button" id="buttonStart" class="btn btn-success btn-lg" v-if="!counting" v-on:click="startCount()">Start</button>
+					<button v-if="counting" type="button" id="buttonStop" class="btn btn-danger btn-lg" v-on:click="stopCount()" >Stop</button>
+					<button v-if="secondsValue>0" type="button" id="buttonReset" class="btn btn-default btn-lg" v-on:click="resetCount()">Reset</button>
 				</div>
 			</div>`,
 		data: function() {
@@ -21,6 +21,12 @@ const Timer = {
 			}
 		},
 		methods: {
+			focusStart: function() {
+				setTimeout(function() {$("#buttonStart").focus();},100);
+			},
+			focusStop: function() {
+				setTimeout(function() {$("#buttonStop").focus();},100);
+			},
 			incrementSecond: function() {
 				this.secondsValue++;
 				this.counterTimerAnchor = setTimeout(this.incrementSecond, 1000);
@@ -30,11 +36,13 @@ const Timer = {
 				this.counting = true;
 				this.counterTimerAnchor = setTimeout(this.incrementSecond, 1000);
 				this.updateOutput();
+				this.focusStop();
 			},
 			stopCount: function() {
 				this.counting = false;
 				clearTimeout(this.counterTimerAnchor);
 				this.updateOutput();
+				this.focusStart();
 			},
 			resetCount: function() {
 				this.stopCount();
@@ -49,5 +57,6 @@ const Timer = {
 		},
 		mounted: function() {
 			this.updateOutput();
+			this.focusStart();
 		}
 	}

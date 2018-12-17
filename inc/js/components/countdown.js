@@ -7,9 +7,9 @@ const CountDown = {
 					</div>
 				</div>
 				<div class="container">
-					<button type="button" class="btn btn-success btn-lg" v-if="!counting && secondsValue>0" v-on:click="startCount()">Start</button>
-					<button v-if="counting" type="button" class="btn btn-danger btn-lg" v-on:click="stopCount()">Stop</button>
-					<button type="button" class="btn btn-default btn-lg" v-on:click="resetCount()">Reset</button>
+					<button type="button" id="buttonStart" class="btn btn-success btn-lg" v-if="!counting && secondsValue>0" v-on:click="startCount()">Start</button>
+					<button v-if="counting" type="button" id="buttonStop" class="btn btn-danger btn-lg" v-on:click="stopCount()">Stop</button>
+					<button type="button" id="buttonReset" class="btn btn-default btn-lg" v-on:click="resetCount()">Reset</button>
 				</div>
 				<div class="container" v-if="!counting && secondsValue>0">
 					<div class="form-inline justify-content-center" >
@@ -36,6 +36,12 @@ const CountDown = {
 			}
 		},
 		methods: {
+			focusStart: function() {
+				setTimeout(function() {$("#buttonStart").focus();},100);
+			},
+			focusStop: function() {
+				setTimeout(function() {$("#buttonStop").focus();},100);
+			},
 			decrementSecond: function() {
 				this.secondsValue--;
 				
@@ -52,11 +58,13 @@ const CountDown = {
 				this.counting = true;
 				this.counterTimerAnchor = setTimeout(this.decrementSecond, 1000);
 				this.updateOutput();
+				this.focusStop();
 			},
 			stopCount: function() {
 				this.counting = false;
 				clearTimeout(this.counterTimerAnchor);
 				this.updateOutput();
+				this.focusStart();
 			},
 			resetCount: function() {
 				this.stopCount();
@@ -77,5 +85,6 @@ const CountDown = {
 		},
 		mounted: function() {
 			this.refreshOutput();
+			this.focusStart();
 		}
 	}
